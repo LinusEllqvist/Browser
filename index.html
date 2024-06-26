@@ -3,73 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Google Search</title>
+    <title>Custom DuckDuckGo Search</title>
     <style>
-        .search-box {
-            display: flex;
-            align-items: center;
+        #duckduckgo-frame {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
             width: 550px;
             height: 60px;
-        }
-        .search-box input[type="text"] {
-            width: 100%;
-            height: 40px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px 0 0 4px;
-        }
-        .search-box button {
-            height: 40px;
-            padding: 10px 20px;
-            background-color: blue;
-            color: white;
             border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        .search-box button:hover {
-            background-color: darkblue;
         }
     </style>
 </head>
 <body>
-    <div class="search-box">
-        <form id="cse-search-box">
-            <input type="text" name="q" placeholder="Search the Web">
-            <button type="submit">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDif21rq3DcB-uZOhU3KtHbzMvd99gPMXWRA&s" alt="Search" style="width: 20px;">
-            </button>
-        </form>
-    </div>
-    <div id="results"></div>
+    <iframe id="duckduckgo-frame" src="https://duckduckgo.com/search.html" frameborder="0"></iframe>
 
-    <script async src="https://cse.google.com/cse.js?cx=0289038225eca419e"></script>
     <script>
-        function executeSearch(query) {
-            var element = google.search.cse.element.getElement('results');
-            if (query == '') {
-                element.clearAllResults();
-            } else {
-                element.execute(query);
+        document.getElementById('duckduckgo-frame').onload = function() {
+            var iframe = document.getElementById('duckduckgo-frame').contentWindow.document;
+            var searchInput = iframe.querySelector('input[type="text"]');
+            if (searchInput) {
+                searchInput.setAttribute('placeholder', 'Web Search');
             }
-        }
-
-        document.getElementById('cse-search-box').onsubmit = function(event) {
-            event.preventDefault();
-            var query = document.querySelector('input[name="q"]').value;
-            executeSearch(query);
-        };
-    </script>
-    <script>
-        window.onload = function() {
-            var cx = '0289038225eca419e'; // Your CSE ID
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
         };
     </script>
 </body>
