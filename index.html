@@ -3,29 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom DuckDuckGo Search</title>
-    <style>
-        #duckduckgo-frame {
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            width: 550px;
-            height: 60px;
-            border: none;
-        }
-    </style>
+    <title>Bing Search</title>
 </head>
 <body>
-    <iframe id="duckduckgo-frame" src="https://duckduckgo.com/search.html" frameborder="0"></iframe>
-
-    <script>
-        document.getElementById('duckduckgo-frame').onload = function() {
-            var iframe = document.getElementById('duckduckgo-frame').contentWindow.document;
-            var searchInput = iframe.querySelector('input[type="text"]');
-            if (searchInput) {
-                searchInput.setAttribute('placeholder', 'Web Search');
-            }
-        };
-    </script>
+    <form action="https://www.bing.com/search" method="get" target="_blank">
+        <input type="text" name="q" placeholder="Search Bing..." style="width: 500px; height: 30px;">
+        <input type="submit" value="Search" style="height: 36px;">
+    </form>
 </body>
 </html>
