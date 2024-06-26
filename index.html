@@ -35,14 +35,42 @@
 </head>
 <body>
     <div class="search-box">
-        <form action="https://cse.google.com/cse" method="get">
-            <input type="hidden" name="cx" value="0289038225eca419e">
-            <input type="hidden" name="gsc.tab" value="0">
+        <form id="cse-search-box">
             <input type="text" name="q" placeholder="Search the Web">
             <button type="submit">
-                <img src="https://duckduckgo.com/assets/icons/search.svg" alt="Search" style="width: 20px;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDif21rq3DcB-uZOhU3KtHbzMvd99gPMXWRA&s" alt="Search" style="width: 20px;">
             </button>
         </form>
     </div>
+    <div id="results"></div>
+
+    <script async src="https://cse.google.com/cse.js?cx=0289038225eca419e"></script>
+    <script>
+        function executeSearch(query) {
+            var element = google.search.cse.element.getElement('results');
+            if (query == '') {
+                element.clearAllResults();
+            } else {
+                element.execute(query);
+            }
+        }
+
+        document.getElementById('cse-search-box').onsubmit = function(event) {
+            event.preventDefault();
+            var query = document.querySelector('input[name="q"]').value;
+            executeSearch(query);
+        };
+    </script>
+    <script>
+        window.onload = function() {
+            var cx = '0289038225eca419e'; // Your CSE ID
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        };
+    </script>
 </body>
 </html>
