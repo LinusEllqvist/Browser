@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom DuckDuckGo Search</title>
+    <title>Custom Google Search</title>
     <style>
         .search-box {
             display: flex;
@@ -35,7 +35,9 @@
 </head>
 <body>
     <div class="search-box">
-        <form action="https://duckduckgo.com/" method="get">
+        <form action="https://cse.google.com/cse" method="get">
+            <input type="hidden" name="cx" value="0289038225eca419e">
+            <input type="hidden" name="gsc.tab" value="0">
             <input type="text" name="q" placeholder="Search the Web">
             <button type="submit">
                 <img src="https://duckduckgo.com/assets/icons/search.svg" alt="Search" style="width: 20px;">
